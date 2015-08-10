@@ -1,0 +1,23 @@
+{
+  "name": "minetro/ntdb",
+  "description": "Nette Database Nested Transaction",
+  "type": "library",
+  "license": ["BSD-3-Clause"],
+  "homepage": "https://github.com/minetro/ntdb",
+  "authors": [
+    {
+      "name": "Milan Felix Sulc",
+      "homepage": "http://jfx.cz"
+    }
+  ],
+  "require": {
+    "php": ">= 5.5"
+  },
+  "require-dev": {
+    "nette/tester": "~1.5.0"
+  },
+  "autoload": {
+    "classmap": ["src/"],
+    "files": ["src/exceptions.php"]
+  }
+}
