@@ -10,7 +10,7 @@ $ composer require minetro/ntdb
 
 ## Resources
 
-Based on this articles.
+Inspired by these articles:
 
 * http://www.yiiframework.com/wiki/38/how-to-use-nested-db-transactions-mysql-5-postgresql/
 * http://www.kennynet.co.uk/2008/12/02/php-pdo-nested-transactions/
@@ -18,13 +18,15 @@ Based on this articles.
 
 ## Usage
 
-Support:
+Provide nested transaction via savepoints.
+
+**Support**
 
 * MySQL / MySQLi
 * PostgreSQL
 * SQLite
 
-Available methods:
+**API**
 
 * `$t->begin`
 * `$t->commit`
@@ -75,12 +77,68 @@ On success it commits changes, if exceptions is thrown it rollbacks changes.
 
 ```php
 $t = new Transaction(new Connection(...));
+
 $t->transaction(function() {
     // some changes..
 });
 
+// or alias
+
 $t->t(function() {
     // some changes..
 });
+```
+
+## Nette
+
+### NEON
+
+Register as service in your config file.
+
+```yaml
+services:
+    - Minetro\Transaction\Transaction
+```
+
+On multiple connections you have to specific one.
+
+```yaml
+services:
+    - Minetro\Transaction\Transaction(@nette.database.one.connection)
+    # or
+    - Minetro\Transaction\Transaction(@nette.database.two.connection)
+```
+
+### Repository | Presenter
+
+```php
+use Minetro\Transaction\Transaction;
+
+class MyRepository {
+
+    function __construct(Connection $connection) {
+        $this->transaction = new Transaction($connection);
+    }
+
+    // OR
+
+    function __construct(Context $context) {
+        $this->transaction = new Transaction($context->getConnection());
+    }
+}
+
+class MyPresenter {
+
+    public function processSomething() {
+        $transaction->transaction(function() {
+            // Save one..
+
+            // Make other..
+
+            // Delete from this..
+
+            // Update everything..
+        });
+    }
 }
 ```
