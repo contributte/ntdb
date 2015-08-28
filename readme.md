@@ -1,6 +1,6 @@
 # Nette Database Nested Transaction
 
-[![Downloads this Month](https://img.shields.io/packagist/dm/minetro/ntdb.svg?style=flat-square)](https://packagist.org/packages/minetro/ntdb)
+[![Downloads Total](https://img.shields.io/packagist/dm/minetro/ntdb.svg?style=flat-square)](https://packagist.org/packages/minetro/ntdb)
 [![Latest stable](https://img.shields.io/packagist/v/minetro/ntdb.svg?style=flat-square)](https://packagist.org/packages/minetro/ntdb)
 
 ## Install
@@ -32,6 +32,7 @@ Provide nested transaction via savepoints.
 * `$t->commit`
 * `$t->rollback`
 * **`$t->transaction`** or **`$t->t`**
+* `$t->promise`
 
 ### Begin
 
@@ -87,6 +88,26 @@ $t->transaction(function() {
 $t->t(function() {
     // some changes..
 });
+```
+
+### Promise
+
+Another attitude to transaction.
+
+```php
+$t = new Transaction(new Connection(...));
+
+$t->promise()->then(
+    function() {
+        // Logic.. (save/update/remove some data)
+    }, 
+    function () {
+        // Success.. (after commit)
+    },
+    function() {
+        // Failed.. (after rollback)
+    }      
+);
 ```
 
 ## Nette

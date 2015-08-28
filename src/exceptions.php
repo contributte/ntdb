@@ -1,6 +1,6 @@
 <?php
 
-namespace Minetro\Transaction;
+namespace Minetro\Database\Transaction;
 
 /**
  * @author Milan Felix Sulc <sulcmil@gmail.com>

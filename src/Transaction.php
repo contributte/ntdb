@@ -1,6 +1,6 @@
 <?php
 
-namespace Minetro\Transaction;
+namespace Minetro\Database\Transaction;
 
 use Exception;
 use Nette\Database\Connection;
@@ -39,6 +39,18 @@ class Transaction
     }
 
     /**
+     * @return Connection
+     */
+    public function getConnection()
+    {
+        return $this->connection;
+    }
+
+    /**
+     * API *********************************************************************
+     */
+
+    /**
      * Run transaction in function scope
      *
      * @param callable $callback
@@ -67,7 +79,7 @@ class Transaction
     }
 
     /**
-     * Begin transaction
+     * Begin transaction. Save current save point.
      *
      * @throws InvalidTransactionException
      */
@@ -83,7 +95,7 @@ class Transaction
     }
 
     /**
-     * Commit transaction
+     * Commit transaction. Release current save point.
      *
      * @return void
      * @throws InvalidTransactionException
@@ -104,7 +116,7 @@ class Transaction
     }
 
     /**
-     * Rollback transaction
+     * Rollback to savepoint.
      *
      * @return void
      * @throws InvalidTransactionException
@@ -123,4 +135,17 @@ class Transaction
             $this->connection->getPdo()->exec('ROLLBACK TO SAVEPOINT LEVEL' . self::$level);
         }
     }
+
+    /**
+     * FACTORY *****************************************************************
+     */
+
+    /**
+     * @return Promise
+     */
+    public function promise()
+    {
+        return new Promise($this);
+    }
+
 }
