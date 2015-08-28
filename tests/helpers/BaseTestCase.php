@@ -18,7 +18,7 @@ abstract class BaseTestCase extends TestCase
 
     protected function setUp()
     {
-        Environment::lock('database');
+        Environment::lock('database', TMP_DIR);
         $this->db = DatabaseFactory::create();
         $this->t = new Transaction($this->db->getConnection());
     }

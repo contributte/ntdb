@@ -1,7 +1,11 @@
 # Nette Database Nested Transaction
 
+
+[![Build Status](https://img.shields.io/travis/minetro/ntdb.svg?style=flat-square)](https://travis-ci.org/minetro/ntdb)
+[![Code coverage](https://img.shields.io/coveralls/minetro/ntdb.svg?style=flat-square)](https://coveralls.io/r/minetro/ntdb)
 [![Downloads Total](https://img.shields.io/packagist/dm/minetro/ntdb.svg?style=flat-square)](https://packagist.org/packages/minetro/ntdb)
 [![Latest stable](https://img.shields.io/packagist/v/minetro/ntdb.svg?style=flat-square)](https://packagist.org/packages/minetro/ntdb)
+[![HHVM Status](https://img.shields.io/hhvm/minetro/ntdb.svg?style=flat-square)](http://hhvm.h4cc.de/package/minetro/ntdb)
 
 ## Install
 ```sh

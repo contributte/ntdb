@@ -18,7 +18,7 @@ final class DatabaseFactory
     public static function create()
     {
         $cacheStorage = new DevNullStorage();
-        $connection = new Connection('mysql:host=localhost;dbname=test', 'root', NULL);
+        $connection = new Connection('mysql:host=127.0.0.1;dbname=testik', 'root', NULL);
         $structure = new Structure($connection, $cacheStorage);
         $conventions = new DiscoveredConventions($structure);
         $context = new Context($connection, $structure, $conventions, $cacheStorage);
