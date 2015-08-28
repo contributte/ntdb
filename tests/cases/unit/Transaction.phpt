@@ -154,6 +154,17 @@ final class TransactionTest extends BaseTestCase
 
         $this->validateCount(1);
     }
+    /**
+     * @test
+     */
+    public function testTransactionalAlias()
+    {
+        $this->t->t(function () {
+            $this->table()->insert(['text' => time()]);
+        });
+
+        $this->validateCount(1);
+    }
 
     /**
      * @test
