@@ -29,15 +29,22 @@ class Promise
         try {
             // Fire onFulfilled!
             $onFulfilled($this->transaction->getConnection());
+            
             // Commit transaction
             $this->transaction->commit();
-            // Fire onCompleted!
-            $onCompleted();
+
+            if ($onCompleted) {
+                // Fire onCompleted!
+                $onCompleted();
+            }
         } catch (\Exception $e) {
             // Rollback transaction
             $this->transaction->rollback();
-            // Fire onRejected!
-            $onRejected($e);
+            
+            if ($onRejected) {
+                // Fire onRejected!
+                $onRejected($e);
+            }
         }
 
     }

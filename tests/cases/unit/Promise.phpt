@@ -17,6 +17,21 @@ final class PromiseTest extends BaseTestCase
     /**
      * @test
      */
+    public function testPromiseFulfilled()
+    {
+        $testPromiseFulfilled = NULL;
+        $this->t->promise()->then(
+            function () use (&$fulfilled) {
+                $this->table()->insert(['text' => time()]);
+                $fulfilled = TRUE;
+            });
+
+        Assert::true($fulfilled);
+    }
+
+    /**
+     * @test
+     */
     public function testPromiseCompleted()
     {
         $success = NULL;
@@ -33,24 +48,25 @@ final class PromiseTest extends BaseTestCase
 
         Assert::true($success);
     }
+
     /**
      * @test
      */
     public function testPromiseRejected()
     {
-        $success = NULL;
+        $rejected = NULL;
         $this->t->promise()->then(
             function () {
                 $this->table()->insert([time() => time()]);
             },
-            function () use (&$success) {
-                $success = TRUE;
+            function () use (&$rejected) {
+                $rejected = TRUE;
             },
-            function () use (&$success) {
-                $success = FALSE;
+            function () use (&$rejected) {
+                $rejected = FALSE;
             });
 
-        Assert::false($success);
+        Assert::false($rejected);
     }
 }
 
