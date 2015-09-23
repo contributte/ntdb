@@ -122,22 +122,22 @@ Register as service in your config file.
 
 ```yaml
 services:
-    - Minetro\Transaction\Transaction
+    - Minetro\Database\Transaction\Transaction
 ```
 
 On multiple connections you have to specific one.
 
 ```yaml
 services:
-    - Minetro\Transaction\Transaction(@nette.database.one.connection)
+    - Minetro\Database\Transaction\Transaction(@nette.database.one.connection)
     # or
-    - Minetro\Transaction\Transaction(@nette.database.two.connection)
+    - Minetro\Database\Transaction\Transaction(@nette.database.two.connection)
 ```
 
 ### Repository | Presenter
 
 ```php
-use Minetro\Transaction\Transaction;
+use Minetro\Database\Transaction\Transaction;
 
 class MyRepository {
 
