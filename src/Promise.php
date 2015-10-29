@@ -29,7 +29,7 @@ class Promise
         try {
             // Fire onFulfilled!
             $onFulfilled($this->transaction->getConnection());
-            
+
             // Commit transaction
             $this->transaction->commit();
 
@@ -40,7 +40,7 @@ class Promise
         } catch (\Exception $e) {
             // Rollback transaction
             $this->transaction->rollback();
-            
+
             if ($onRejected) {
                 // Fire onRejected!
                 $onRejected($e);

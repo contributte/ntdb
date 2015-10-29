@@ -4,9 +4,7 @@ namespace Minetro\Database\Transaction;
 
 use Exception;
 use Nette\Database\Connection;
-use Nette\Database\Context;
 use PDO;
-use Tracy\Debugger;
 
 /**
  * @author Milan Felix Sulc <sulcmil@gmail.com>
