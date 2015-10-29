@@ -6,6 +6,7 @@ use Exception;
 use Nette\Database\Connection;
 use Nette\Database\Context;
 use PDO;
+use Tracy\Debugger;
 
 /**
  * @author Milan Felix Sulc <sulcmil@gmail.com>
@@ -14,10 +15,16 @@ class Transaction
 {
 
     /** @var array */
+    public $onUnresolved = [];
+
+    /** @var array */
     protected static $drivers = ['pgsql', 'mysql', 'mysqli', 'sqlite'];
 
     /** @var int */
     protected static $level = 0;
+
+    /** @var UnresolvedTransactionException */
+    protected $unresolved;
 
     /** @var Connection */
     protected $connection;
@@ -28,6 +35,16 @@ class Transaction
     function __construct(Connection $connection)
     {
         $this->connection = $connection;
+        $this->unresolved = new UnresolvedTransactionException();
+    }
+
+    function __destruct()
+    {
+        if (self::$level > 0) {
+            foreach ($this->onUnresolved as $callback) {
+                call_user_func_array($callback, [$this->unresolved]);
+            }
+        }
     }
 
     /**

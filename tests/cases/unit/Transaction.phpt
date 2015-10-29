@@ -22,9 +22,9 @@ final class TransactionTest extends BaseTestCase
     {
         $this->validateCount(0);
 
-        $this->t->begin();
+        $this->transaction->begin();
         $this->table()->insert(['text' => time()]);
-        $this->t->commit();
+        $this->transaction->commit();
 
         $this->validateCount(1);
     }
@@ -36,11 +36,11 @@ final class TransactionTest extends BaseTestCase
     {
         $this->validateCount(0);
 
-        $this->t->begin();
+        $this->transaction->begin();
         $this->table()->insert(['text' => time()]);
 
         $this->validateCount(1);
-        $this->t->rollback();
+        $this->transaction->rollback();
 
         $this->validateCount(0);
     }
@@ -51,7 +51,7 @@ final class TransactionTest extends BaseTestCase
     public function testCommitWithoutBegin()
     {
         Assert::exception(function () {
-            $this->t->commit();
+            $this->transaction->commit();
         }, 'Minetro\Database\Transaction\InvalidTransactionException');
     }
 
@@ -61,7 +61,7 @@ final class TransactionTest extends BaseTestCase
     public function testRollbackWithoutBegin()
     {
         Assert::exception(function () {
-            $this->t->rollback();
+            $this->transaction->rollback();
         }, 'Minetro\Database\Transaction\InvalidTransactionException');
     }
 
@@ -71,9 +71,9 @@ final class TransactionTest extends BaseTestCase
     public function testDoubleCommit()
     {
         Assert::exception(function () {
-            $this->t->begin();
-            $this->t->commit();
-            $this->t->commit();
+            $this->transaction->begin();
+            $this->transaction->commit();
+            $this->transaction->commit();
         }, 'Minetro\Database\Transaction\InvalidTransactionException');
     }
 
@@ -83,9 +83,9 @@ final class TransactionTest extends BaseTestCase
     public function testDoubleRollback()
     {
         Assert::exception(function () {
-            $this->t->begin();
-            $this->t->rollback();
-            $this->t->rollback();
+            $this->transaction->begin();
+            $this->transaction->rollback();
+            $this->transaction->rollback();
         }, 'Minetro\Database\Transaction\InvalidTransactionException');
     }
 
@@ -94,12 +94,12 @@ final class TransactionTest extends BaseTestCase
      */
     public function testNestedCommit()
     {
-        $this->t->begin();
+        $this->transaction->begin();
         $this->table()->insert(['text' => time()]);
-        $this->t->begin();
+        $this->transaction->begin();
         $this->table()->insert(['text' => time()]);
-        $this->t->commit();
-        $this->t->commit();
+        $this->transaction->commit();
+        $this->transaction->commit();
 
         $this->validateCount(2);
     }
@@ -109,16 +109,16 @@ final class TransactionTest extends BaseTestCase
      */
     public function testNestedCommitAndNestedRollback()
     {
-        $this->t->begin();
+        $this->transaction->begin();
         $this->table()->insert(['text' => 'a']);
 
         // --
-        $this->t->begin();
+        $this->transaction->begin();
         $this->table()->insert(['text' => 'b']);
-        $this->t->rollback();
+        $this->transaction->rollback();
         // --
 
-        $this->t->commit();
+        $this->transaction->commit();
 
         $this->validateCount(1);
         Assert::equal('a', $this->table()->fetch()->text);
@@ -129,16 +129,16 @@ final class TransactionTest extends BaseTestCase
      */
     public function testNestedCommitAndRollback()
     {
-        $this->t->begin();
+        $this->transaction->begin();
         $this->table()->insert(['text' => 'a']);
 
         // --
-        $this->t->begin();
+        $this->transaction->begin();
         $this->table()->insert(['text' => 'b']);
-        $this->t->commit();
+        $this->transaction->commit();
         // --
 
-        $this->t->rollback();
+        $this->transaction->rollback();
 
         $this->validateCount(0);
     }
@@ -148,7 +148,7 @@ final class TransactionTest extends BaseTestCase
      */
     public function testTransactional()
     {
-        $this->t->transaction(function () {
+        $this->transaction->transaction(function () {
             $this->table()->insert(['text' => time()]);
         });
 
@@ -159,7 +159,7 @@ final class TransactionTest extends BaseTestCase
      */
     public function testTransactionalAlias()
     {
-        $this->t->t(function () {
+        $this->transaction->t(function () {
             $this->table()->insert(['text' => time()]);
         });
 
@@ -172,7 +172,7 @@ final class TransactionTest extends BaseTestCase
     public function testTransactionalFailed()
     {
         Assert::exception(function () {
-            $this->t->transaction(function () {
+            $this->transaction->transaction(function () {
                 $this->table()->insert([time() => time()]);
             });
         }, 'Nette\Database\DriverException');
@@ -185,10 +185,10 @@ final class TransactionTest extends BaseTestCase
      */
     public function testNestedTransactional()
     {
-        $this->t->transaction(function () {
+        $this->transaction->transaction(function () {
             $this->table()->insert(['text' => time()]);
 
-            $this->t->transaction(function () {
+            $this->transaction->transaction(function () {
                 $this->table()->insert(['text' => time()]);
             });
         });
@@ -201,11 +201,11 @@ final class TransactionTest extends BaseTestCase
      */
     public function testNestedTransactionalNestedFailed()
     {
-        $this->t->transaction(function () {
+        $this->transaction->transaction(function () {
             $this->table()->insert(['text' => time()]);
 
             Assert::exception(function () {
-                $this->t->transaction(function () {
+                $this->transaction->transaction(function () {
                     $this->table()->insert([time() => time()]);
                 });
             }, 'Nette\Database\DriverException');

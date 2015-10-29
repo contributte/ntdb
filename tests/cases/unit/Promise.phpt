@@ -20,7 +20,7 @@ final class PromiseTest extends BaseTestCase
     public function testPromiseFulfilled()
     {
         $testPromiseFulfilled = NULL;
-        $this->t->promise()->then(
+        $this->transaction->promise()->then(
             function () use (&$fulfilled) {
                 $this->table()->insert(['text' => time()]);
                 $fulfilled = TRUE;
@@ -35,7 +35,7 @@ final class PromiseTest extends BaseTestCase
     public function testPromiseCompleted()
     {
         $success = NULL;
-        $this->t->promise()->then(
+        $this->transaction->promise()->then(
             function () {
                 $this->table()->insert(['text' => time()]);
             },
@@ -55,7 +55,7 @@ final class PromiseTest extends BaseTestCase
     public function testPromiseRejected()
     {
         $rejected = NULL;
-        $this->t->promise()->then(
+        $this->transaction->promise()->then(
             function () {
                 $this->table()->insert([time() => time()]);
             },

@@ -2,9 +2,16 @@
 
 namespace Minetro\Database\Transaction;
 
-/**
- * @author Milan Felix Sulc <sulcmil@gmail.com>
- */
-class InvalidTransactionException extends \RuntimeException
+use RuntimeException;
+
+class TransactionException extends RuntimeException
+{
+}
+
+class InvalidTransactionException extends TransactionException
+{
+}
+
+class UnresolvedTransactionException extends TransactionException
 {
 }

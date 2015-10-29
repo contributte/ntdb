@@ -14,18 +14,19 @@ abstract class BaseTestCase extends TestCase
     protected $db;
 
     /** @var Transaction */
-    protected $t;
+    protected $transaction;
 
     protected function setUp()
     {
         Environment::lock('database', TMP_DIR);
         $this->db = DatabaseFactory::create();
-        $this->t = new Transaction($this->db->getConnection());
+        $this->transaction = new Transaction($this->db->getConnection());
     }
 
     protected function tearDown()
     {
         $this->db->query('TRUNCATE TABLE `?`', new SqlLiteral('test'));
+        $this->transaction = NULL;
     }
 
     protected function validateCount($count)
