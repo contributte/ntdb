@@ -114,6 +114,19 @@ $t->promise()->then(
 );
 ```
 
+### UnresolvedTransactionException
+
+Log unresolved transaction.
+
+Idea by Ondrej Mirtes (https://ondrej.mirtes.cz/detekce-neuzavrenych-transakci).
+
+```php
+$t = new Transaction(new Connection(...));
+$t->onUnresolved[] = function($exception) {
+    Tracy\Debugger::log($exception);
+};
+```
+
 ## Nette
 
 ### NEON
