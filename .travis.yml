@@ -19,7 +19,7 @@ before_script:
     - travis_retry composer install --no-interaction --prefer-source
 
     # Create database
-    - mysql -e 'CREATE DATABASE testik;'
+    - mysql -e 'CREATE DATABASE mydb;'
 
     # Import data
     - mysql -u root mydb < tests/fixtures/database.sql
