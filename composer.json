@@ -10,12 +10,16 @@
       "homepage": "http://jfx.cz"
     }
   ],
+  "suggest": {
+    "nette/di": "To use TransactionExtension"
+  },
   "require": {
     "php": ">= 5.5"
   },
   "require-dev": {
     "nette/tester": "~1.5.0",
-    "nette/database": "~2.3.0"
+    "nette/database": "~2.3.0",
+    "nette/di": "~2.3.0"
   },
   "autoload": {
     "classmap": ["src/"],
