@@ -129,6 +129,15 @@ $t->onUnresolved[] = function($exception) {
 
 ## Nette
 
+### EXTENSION
+
+```yaml
+extensions:
+    ntdb: Minetro\Database\Transaction\DI\Transaction
+```
+
+That's all. You can let nette\di autowired it to your services/presenters.
+
 ### NEON
 
 Register as service in your config file.
