@@ -6,9 +6,7 @@
  * @testCase
  */
 
-use Nette\Database\Context;
 use Tester\Assert;
-use Tester\TestCase;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
@@ -154,6 +152,7 @@ final class TransactionTest extends BaseTestCase
 
         $this->validateCount(1);
     }
+
     /**
      * @test
      */

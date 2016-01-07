@@ -7,9 +7,7 @@
  */
 
 use Minetro\Database\Transaction\UnresolvedTransactionException;
-use Nette\Database\Context;
 use Tester\Assert;
-use Tester\TestCase;
 
 require_once __DIR__ . '/../../bootstrap.php';
 

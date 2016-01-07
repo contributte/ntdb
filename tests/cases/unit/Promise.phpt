@@ -7,7 +7,6 @@
  */
 
 use Tester\Assert;
-use Tester\TestCase;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
