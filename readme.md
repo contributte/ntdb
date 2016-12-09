@@ -14,6 +14,9 @@ Nested transaction in [Nette\Database](https://doc.nette.org/en/2.3/database).
 
 [![Join the chat](https://img.shields.io/gitter/room/minetro/nette.svg?style=flat-square)](https://gitter.im/minetro/nette?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+## Contributte
+
+This package is no longer developed here. In favor of [contributte/database](https://github.com/contributte/database). 
 
 ## Install
 
