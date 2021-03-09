@@ -20,8 +20,8 @@ This package is no longer developed here. In favor of [contributte/database](htt
 
 ## Install
 
-```sh
-$ composer require minetro/ntdb
+```bash
+composer require minetro/ntdb
 ```
 
 ## Resources
