@@ -1,28 +1,25 @@
-# Nette Database Nested Transaction
+![](https://heatbadger.now.sh/github/readme/contributte/ntdb/?deprecated=1)
 
-Nested transaction in [Nette\Database](https://doc.nette.org/en/2.3/database).
+<p align=center>
+    <a href="https://bit.ly/ctteg"><img src="https://badgen.net/badge/support/gitter/cyan"></a>
+    <a href="https://bit.ly/cttfo"><img src="https://badgen.net/badge/support/forum/yellow"></a>
+    <a href="https://contributte.org/partners.html"><img src="https://badgen.net/badge/sponsor/donations/F96854"></a>
+</p>
 
------
+<p align=center>
+    Website 🚀 <a href="https://contributte.org">contributte.org</a> | Contact 👨🏻‍💻 <a href="https://f3l1x.io">f3l1x.io</a> | Twitter 🐦 <a href="https://twitter.com/contributte">@contributte</a>
+</p>
 
-[![Build Status](https://img.shields.io/travis/minetro/ntdb.svg?style=flat-square)](https://travis-ci.org/minetro/ntdb)
-[![Code coverage](https://img.shields.io/coveralls/minetro/ntdb.svg?style=flat-square)](https://coveralls.io/r/minetro/ntdb)
-[![Downloads total](https://img.shields.io/packagist/dt/minetro/ntdb.svg?style=flat-square)](https://packagist.org/packages/minetro/ntdb)
-[![Latest stable](https://img.shields.io/packagist/v/minetro/ntdb.svg?style=flat-square)](https://packagist.org/packages/minetro/ntdb)
-[![HHVM Status](https://img.shields.io/hhvm/minetro/ntdb.svg?style=flat-square)](http://hhvm.h4cc.de/package/minetro/ntdb)
+## Disclaimer
 
-## Discussion / Help
+| :warning: | This project is no longer being maintained. Please use [contributte/database](https://github.com/contributte/database).
+|---|---|
 
-[![Join the chat](https://img.shields.io/gitter/room/minetro/nette.svg?style=flat-square)](https://gitter.im/minetro/nette?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-## Contributte
-
-This package is no longer developed here. In favor of [contributte/database](https://github.com/contributte/database). 
-
-## Install
-
-```bash
-composer require minetro/ntdb
-```
+| Composer | [`minetro/ntdb`](https://packagist.org/minetro/ntdb) |
+|---| --- |
+| Version | ![](https://badgen.net/packagist/v/minetro/ntdb) |
+| PHP | ![](https://badgen.net/packagist/php/minetro/ntdb) |
+| License | ![](https://badgen.net/github/license/contributte/ntdb) |
 
 ## Resources
 
@@ -201,3 +198,17 @@ class MyPresenter {
 	}
 }
 ```
+
+
+## Development
+
+This package was maintain by these authors.
+
+<a href="https://github.com/f3l1x">
+  <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
+</a>
+
+-----
+
+Consider to [support](https://contributte.org/partners.html) **contributte** development team.
+Also thank you for being used this package.
