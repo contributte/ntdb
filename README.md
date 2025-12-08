@@ -15,7 +15,7 @@
 | :warning: | This project is no longer being maintained. Please use [contributte/database](https://github.com/contributte/database).
 |---|---|
 
-| Composer | [`minetro/ntdb`](https://packagist.org/minetro/ntdb) |
+| Composer | [`minetro/ntdb`](https://packagist.org/packages/minetro/ntdb) |
 |---| --- |
 | Version | ![](https://badgen.net/packagist/v/minetro/ntdb) |
 | PHP | ![](https://badgen.net/packagist/php/minetro/ntdb) |
